@@ -1,6 +1,7 @@
 package com.wolfsoft.firebasenotification.notifications;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -34,13 +35,11 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_notification);
 
         savedCurrentUser = MySharedPref.getInstance(this).getData("Current_USERID");
-
         hisUid = MySharedPref.getInstance(getApplicationContext()).getData("hisUid");
         name = MySharedPref.getInstance(getApplicationContext()).getData("name");
 
         editText = findViewById(R.id.edittext);
-        apiService = Client.getRetrofit("https://fcm.googleapis.com/").create(APIService.class);
-
+        apiService = Client.getRetrofit().create(APIService.class);
 
         findViewById(R.id.btnSend).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,9 +66,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void sendNotification(final String hisUid, final String message) {
-        DatabaseReference allTokens = FirebaseDatabase.getInstance().getReference("Tokens");
-        Query query = allTokens.orderByKey().equalTo(hisUid);
-        query.addValueEventListener(new ValueEventListener() {
+        MyDatabaseRef.tokensRef.orderByKey().equalTo(hisUid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -85,7 +82,7 @@ public class ChatActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onFailure(Call<Response> call, Throwable t) {
-
+                                    Log.w("ChatActivity", t);
                                 }
                             });
                 }

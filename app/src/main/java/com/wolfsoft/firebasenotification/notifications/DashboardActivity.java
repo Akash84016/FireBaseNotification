@@ -47,8 +47,7 @@ public class DashboardActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("ChatUsers");
-        reference.addValueEventListener(new ValueEventListener() {
+        MyDatabaseRef.usersRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
@@ -76,9 +75,8 @@ public class DashboardActivity extends AppCompatActivity {
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
             @Override
             public void onSuccess(InstanceIdResult instanceIdResult) {
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Tokens");
                 Token mToken = new Token(instanceIdResult.getToken());
-                ref.child(mUID).setValue(mToken);
+                MyDatabaseRef.tokensRef.child(mUID).setValue(mToken);
             }
         });
 

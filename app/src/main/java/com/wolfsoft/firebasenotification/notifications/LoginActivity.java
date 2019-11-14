@@ -50,9 +50,8 @@ public class LoginActivity extends AppCompatActivity {
                             MySharedPref.getInstance(LoginActivity.this).saveData("Current_USERID",firebaseAuth.getCurrentUser().getUid());
                             Intent intent = new Intent(LoginActivity.this,DashboardActivity.class);
                             startActivity(intent);
-                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("ChatUsers");
                             UserDetails userDetails = new UserDetails(firebaseAuth.getCurrentUser().getUid(),strEmail);
-                            reference.child(firebaseAuth.getCurrentUser().getUid()).setValue(userDetails);
+                            MyDatabaseRef.usersRef.child(firebaseAuth.getCurrentUser().getUid()).setValue(userDetails);
                             Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -60,5 +59,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (firebaseAuth.getCurrentUser() != null){
+            MySharedPref.getInstance(LoginActivity.this).saveData("Current_USERID",firebaseAuth.getCurrentUser().getUid());
+            Intent intent = new Intent(LoginActivity.this,DashboardActivity.class);
+            startActivity(intent);
+        }
     }
 }
