@@ -1,0 +1,143 @@
+{
+  "project_info": {
+    "project_number": "972910398807",
+    "firebase_url": "https://akash-projects2.firebaseio.com",
+    "project_id": "akash-projects2",
+    "storage_bucket": "akash-projects2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:972910398807:android:2799aed3b97e08f5080212",
+        "android_client_info": {
+          "package_name": "blueappsoftware.referearnpro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "972910398807-u928p713s3gmkosglnso9a7gespgi74h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "blueappsoftware.referearnpro",
+            "certificate_hash": "2959404c885562890db1d7f007154ac0a639ca58"
+          }
+        },
+        {
+          "client_id": "972910398807-qd4sou1oj58cfq1nndu5omclu0krkmjt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCODImbnySpJ_0458uJAixRm12nySzUB6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "972910398807-qd4sou1oj58cfq1nndu5omclu0krkmjt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "972910398807-18vvtt36d26fnbopu7t2j4vnreg31slp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.wolfsoft3.firebasechatapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:972910398807:android:0115adeb7354a749",
+        "android_client_info": {
+          "package_name": "com.example.wolfsoft3.firebasechatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "972910398807-lu74bb8fvj57924rp7v2dqhvbmhe2mk0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wolfsoft3.firebasechatapp",
+            "certificate_hash": "d41a5e4b579d2d98ecf76b3f1c8cec69c731f5be"
+          }
+        },
+        {
+          "client_id": "972910398807-qd4sou1oj58cfq1nndu5omclu0krkmjt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCODImbnySpJ_0458uJAixRm12nySzUB6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "972910398807-qd4sou1oj58cfq1nndu5omclu0krkmjt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "972910398807-18vvtt36d26fnbopu7t2j4vnreg31slp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.wolfsoft3.firebasechatapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:972910398807:android:9992a5f378e9337a080212",
+        "android_client_info": {
+          "package_name": "com.wolfsoft.firebasenotification"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "972910398807-06u5nkeqlgonemo10pn8ifl6vvdf1f35.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wolfsoft.firebasenotification",
+            "certificate_hash": "2959404c885562890db1d7f007154ac0a639ca58"
+          }
+        },
+        {
+          "client_id": "972910398807-qd4sou1oj58cfq1nndu5omclu0krkmjt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCODImbnySpJ_0458uJAixRm12nySzUB6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "972910398807-qd4sou1oj58cfq1nndu5omclu0krkmjt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "972910398807-18vvtt36d26fnbopu7t2j4vnreg31slp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.wolfsoft3.firebasechatapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
