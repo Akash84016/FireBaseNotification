@@ -1,5 +1,6 @@
 package com.wolfsoft.firebasenotification.notifications;
 
+import android.app.KeyguardManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -17,12 +18,14 @@ import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.wolfsoft.firebasenotification.CustomNotification;
 import com.wolfsoft.firebasenotification.MySharedPref;
 
-public class FirebaseMessaging extends FirebaseMessagingService {
+public class MyFirebaseMessagingReceive extends FirebaseMessagingService {
 
     private String user, icon, title, body;
-    private String TAG = "FirebaseMessaging ";
+    private Uri notificationSound;
+    private String TAG = "MyFirebaseMessagingReceive ";
 
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
@@ -34,12 +37,24 @@ public class FirebaseMessaging extends FirebaseMessagingService {
         icon = remoteMessage.getData().get("icon");
         title = remoteMessage.getData().get("title");
         body = remoteMessage.getData().get("body");
+        notificationSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         if (!savedCurrentUser.equals(user)) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                receivedOAndAboveNotification();
-            } else {
-                receivedNormalNotification();
+            KeyguardManager myKM = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+            if (myKM != null) {
+                if (myKM.inKeyguardRestrictedInputMode()) {
+                    // when mobile is locked
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        receivedOAndAboveNotification();
+                    } else {
+                        receivedNormalNotification();
+                    }
+                } else {
+                    //when mobile is not locked
+                    Intent intent = new Intent(this, CustomNotification.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
             }
         }
     }
@@ -53,13 +68,12 @@ public class FirebaseMessaging extends FirebaseMessagingService {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pIntent = PendingIntent.getActivity(this, i, intent, PendingIntent.FLAG_ONE_SHOT);
 
-        Uri defDoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "")
                 .setSmallIcon(Integer.parseInt(icon))
                 .setContentText(body)
                 .setContentTitle(title)
                 .setAutoCancel(true)
-                .setSound(defDoundUri)
+                .setSound(notificationSound)
                 .setContentIntent(pIntent);
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -81,10 +95,8 @@ public class FirebaseMessaging extends FirebaseMessagingService {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pIntent = PendingIntent.getActivity(this, i, intent, PendingIntent.FLAG_ONE_SHOT);
 
-        Uri defSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-
         OreoAndroidAboveNotification notification1 = new OreoAndroidAboveNotification(this);
-        Notification.Builder builder = notification1.getNotifications(title, body, pIntent, defSoundUri, icon);
+        Notification.Builder builder = notification1.getNotifications(title, body, pIntent, notificationSound, icon);
 
         int j = 0;
         if (i > 0) {

@@ -1,6 +1,7 @@
 package com.wolfsoft.firebasenotification.notifications;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -45,27 +46,17 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 notify = true;
-                final String message = editText.getText().toString();
-                DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("ChatUsers").child(savedCurrentUser);
-                database.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (notify) {
-                            sendNotification(hisUid, message);
-                        }
-                        notify = false;
-                    }
+                String message = editText.getText().toString();
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
+                if (notify && !TextUtils.isEmpty(message)) {
+                    sendNotification(message);
+                    notify = false;
+                }
             }
         });
     }
 
-    private void sendNotification(final String hisUid, final String message) {
+    private void sendNotification(final String message) {
         MyDatabaseRef.tokensRef.orderByKey().equalTo(hisUid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".CustomNotification"/>
         <activity android:name=".notifications.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,19 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".notifications.DashboardActivity"/>
+        <activity android:name=".notifications.DashboardActivity" />
         <activity android:name=".notifications.ChatActivity" />
 
         <service
-            android:name=".notifications.FirebaseService"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_SERVICE" />
-            </intent-filter>
-        </service>
-        <service
-            android:name=".notifications.FirebaseMessaging"
+            android:name=".notifications.MyFirebaseMessagingReceive"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
