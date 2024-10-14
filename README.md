@@ -1,5 +1,5 @@
 *Firebase Push Notification Example for Android:
-- This project serves as a simple example of integrating Firebase Cloud Messaging (FCM) for push notifications in an Android application. With Firebase Cloud Messaging, you can send notifications and messages to users across platforms, including Android, iOS, and the web, without the need for a dedicated server.
+- This project serves as a simple example of integrating Firebase Cloud Messaging (FCM) for push notifications in an Android application with Firebase Cloud Messaging, you can send notifications and messages to users across platforms, including Android, iOS, and the web, without the need for a dedicated server.
 
 *Features:
 1. Firebase Integration: Utilizes Firebase Cloud Messaging for push notifications.
